@@ -22,6 +22,9 @@ app.get("/menu/:day", async (req, res) => {
 
     const $ = cheerio.load(html);
 
+    // get the current day from the optional URL
+    const day = req.params.day;
+
     const menu = {
       ogle: [],
       lunch: [],
@@ -36,7 +39,7 @@ app.get("/menu/:day", async (req, res) => {
       // 85 olması lazım
       for (let j = 1; j <= 2; j++) {
         const row = $(
-          `.MsoNormalTable tr:nth-of-type(2) .MsoNormalTable tr:nth-of-type(${i}) td:nth-of-type(${j}) p span`
+          `.MsoNormalTable tr:nth-of-type(2) .MsoNormalTable tr:nth-of-type(${i + (12 * day)}) td:nth-of-type(${j}) p span`
         )
           .text()
           .replace(/\s+/g, " ")
@@ -55,7 +58,7 @@ app.get("/menu/:day", async (req, res) => {
       // 85 olması lazım
       for (let j = 1; j <= 2; j++) {
         const row = $(
-          `.MsoNormalTable tr:nth-of-type(2) .MsoNormalTable tr:nth-of-type(${i}) td:nth-of-type(${j}) p span`
+          `.MsoNormalTable tr:nth-of-type(2) .MsoNormalTable tr:nth-of-type(${i + (12 * day)}) td:nth-of-type(${j}) p span`
         )
           .text()
           .replace(/\s+/g, " ")
@@ -74,7 +77,7 @@ app.get("/menu/:day", async (req, res) => {
       // 85 olması lazım bunun da
       for (let j = 1; j <= 2; j++) {
         const row = $(
-          `body > div > div > table > tbody > tr:nth-child(3) > td:nth-child(2) > table > tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-of-type(${i}) td:nth-of-type(${i === 2 ? j + 1 : j})`
+          `body > div > div > table > tbody > tr:nth-child(3) > td:nth-child(2) > table > tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-of-type(${i + (12 * day)}) td:nth-of-type(${i === 2 ? j + 1 : j})`
         )
           .text()
           .replace(/\s+/g, " ")
