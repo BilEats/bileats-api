@@ -4,7 +4,7 @@ const iconv = require("iconv-lite");
 const cheerio = require("cheerio");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
 app.get("/", (req, res) => {
   res.send("Welcome to the Bileats API!");
@@ -39,9 +39,7 @@ app.get("/menu/:day", async (req, res) => {
       // 85 olması lazım
       for (let j = 1; j <= 2; j++) {
         const row = $(
-          `.MsoNormalTable tr:nth-of-type(2) .MsoNormalTable tr:nth-of-type(${
-            i + 12 * day
-          }) td:nth-of-type(${j}) p span`
+          `body > div > div > table > tbody > tr:nth-child(3) > td:nth-child(2) > table > tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(${i + (12 * day)}) td:nth-child(${j})`
         )
           .text()
           .replace(/\s+/g, " ")
@@ -60,9 +58,7 @@ app.get("/menu/:day", async (req, res) => {
       // 85 olması lazım
       for (let j = 1; j <= 2; j++) {
         const row = $(
-          `.MsoNormalTable tr:nth-of-type(2) .MsoNormalTable tr:nth-of-type(${
-            i + 12 * day
-          }) td:nth-of-type(${j}) p span`
+          `body > div > div > table > tbody > tr:nth-child(3) > td:nth-child(2) > table > tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(${i + (12 * day)}) td:nth-child(${j})`
         )
           .text()
           .replace(/\s+/g, " ")
@@ -78,22 +74,21 @@ app.get("/menu/:day", async (req, res) => {
 
     // Secmeli/Alternative
     for (let i = 2; i <= 13; i++) {
-      // 85 olması lazım
+      // 85 olması lazım bunun da
       for (let j = 1; j <= 2; j++) {
         const row = $(
-          `body > div > div > table > tbody > tr:nth-child(3) > td:nth-child(2) > table > tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-of-type(${
-            i + 12 * day
-          }) td:nth-of-type(${i === 2 ? j + 1 : j})`
+          `body > div > div > table > tbody > tr:nth-child(3) > td:nth-child(2) > table > tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-of-type(${i + (12 * day)}) td:nth-of-type(${i === 2 ? j + 1 : j})`
         )
           .text()
           .replace(/\s+/g, " ")
           .trim();
-
-        if ((i === 2 && j + 1 === 2) || (i !== 2 && j === 1)) {
+        
+        if ((i === 2 && (j + 1) === 2) || (i !== 2 && j === 1)) {
           menu.secmeli.push(row);
         } else {
           menu.alternative.push(row);
         }
+        
       }
     }
 
@@ -106,3 +101,4 @@ app.get("/menu/:day", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
 });
+
