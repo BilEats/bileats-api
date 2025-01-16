@@ -1,14 +1,24 @@
 {
   "name": "bileats-api",
   "version": "1.0.0",
-  "description": "npm init -y",
+  "description": "BilEats API for fetching food menu from Bilkent University",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "BilEats",
+    "Bilkent",
+    "API",
+    "REST",
+    "RESTFul",
+    "Express",
+    "Cheerio",
+    "Axios",
+    "Node.js"
+  ],
+  "author": "Hasan Huseyin Balbicak & Yagiz Emir Kula",
+  "license": "MIT",
   "dependencies": {
     "axios": "^1.7.9",
     "cheerio": "^1.0.0",
