@@ -81,7 +81,8 @@ app.get("/menu/:day", async (req, res) => {
       // 85 olması lazım bunun da
       for (let j = 1; j <= 2; j++) {
         const row = $(
-          `body > div > div > table > tbody > tr:nth-child(3) > td:nth-child(2) > table > tbody > tr:nth-child(1) > td > div > table > tbody > tr:nth-child(${
+          `body > div > div > table > tbody > tr:nth-child(3) > td:nth-child(2) > table > tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(3) > td > table > tbody >
+          tr:nth-child(${
             i + 12 * day
           }) > td:nth-child(${i === 2 ? j + 1 : j})`
         )
