@@ -80,7 +80,7 @@ app.get("/menu/:day", async (req, res) => {
     for (let i = 2; i <= 13; i++) {
       for (let j = 1; j <= 2; j++) {
         const row = $(
-          `body > div > div > table > tbody > tr:nth-child(3) > td:nth-child(2) > table > tbody > tr:nth-child(1) > td > div > table > tbody >
+          `body > div > div > table > tbody > tr:nth-child(3) > td:nth-child(2) > table > tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(3) > td > div > table > tbody >
           tr:nth-child(${
             i + 12 * day
           }) > td:nth-child(${i === 2 ? j + 1 : j})`
